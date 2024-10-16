@@ -484,6 +484,7 @@ bool WiFiManager::startAP(){
     DEBUG_WM(F("Custom AP IP/GW/Subnet:"));
     #endif
     if(!WiFi.softAPConfig(_ap_static_ip, _ap_static_gw, _ap_static_sn)){
+      WiFi.setTxPower(WIFI_POWER_8_5dBm);
       #ifdef WM_DEBUG_LEVEL
       DEBUG_WM(WM_DEBUG_ERROR,F("[ERROR] softAPConfig failed!"));
       #endif
@@ -1111,6 +1112,7 @@ bool WiFiManager::wifiConnectNew(String ssid, String pass,bool connect){
   WiFi_enableSTA(true,storeSTAmode); // storeSTAmode will also toggle STA on in default opmode (persistent) if true (default)
   WiFi.persistent(true);
   ret = WiFi.begin(ssid.c_str(), pass.c_str(), 0, NULL, connect);
+  WiFi.setTxPower(WIFI_POWER_8_5dBm);
   WiFi.persistent(false);
   #ifdef WM_DEBUG_LEVEL
   if(!ret) DEBUG_WM(WM_DEBUG_ERROR,F("[ERROR] wifi begin failed"));
@@ -1140,6 +1142,7 @@ bool WiFiManager::wifiConnectDefault(){
   #endif
 
   ret = WiFi.begin();
+  WiFi.setTxPower(WIFI_POWER_8_5dBm);
 
   #ifdef WM_DEBUG_LEVEL
   if(!ret) DEBUG_WM(WM_DEBUG_ERROR,F("[ERROR] wifi begin failed"));
