@@ -484,7 +484,6 @@ bool WiFiManager::startAP(){
     DEBUG_WM(F("Custom AP IP/GW/Subnet:"));
     #endif
     if(!WiFi.softAPConfig(_ap_static_ip, _ap_static_gw, _ap_static_sn)){
-      WiFi.setTxPower(WIFI_POWER_8_5dBm);
       #ifdef WM_DEBUG_LEVEL
       DEBUG_WM(WM_DEBUG_ERROR,F("[ERROR] softAPConfig failed!"));
       #endif
